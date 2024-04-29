@@ -67,6 +67,7 @@ export const ShoppingCartProvider = ({ children }) => {
     }
   };
 
+  //Cada vez que tenga un cambio
   useEffect(() => {
     if (searchByTitle && searchByCategory)
       setFilterItems(
