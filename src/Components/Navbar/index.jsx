@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { ShoppingCartContext } from "../../Context";
 import { ShoppingBagIcon } from "@heroicons/react/24/solid";
+import ShoppingCart from "../ShoppingCart";
 
 const Navbar = () => {
   const context = useContext(ShoppingCartContext);
@@ -35,7 +36,7 @@ const Navbar = () => {
     if (hasUserAnAccount && !isUserSignOut) {
       return (
         <>
-          <li className="text-black/60">erick.aguila@gmail.com</li>
+          <li className="text-black/60">{parsedAccount?.email}</li>
           <li>
             <NavLink
               to="/my-order"
@@ -97,7 +98,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-ligh">
+    <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-ligh bg-white">
       <ul className="flex items-center gap-3">
         <li className="font-semibold text-lg">
           <NavLink to={`${isUserSignOut ? "/sign-in" : "/"}`}>Shopi</NavLink>
@@ -171,6 +172,9 @@ const Navbar = () => {
       </ul>
       <ul className="flex items-center gap-3">
         {renderView()}
+        <li className="flex items-center">
+            <ShoppingCart />
+        </li>
         <li className="flex items-center">
           <ShoppingBagIcon className="h-6 w-6 text-black" />
           <div>{context.cartProducts.length}</div>
