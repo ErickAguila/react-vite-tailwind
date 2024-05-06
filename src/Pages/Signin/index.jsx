@@ -23,26 +23,26 @@ function Signin() {
 
   const handleSignIn = () => {
     const stringifiedSignout = JSON.stringify(false);
-    localStorage.setItem('sign-out', stringifiedSignout);
+    localStorage.setItem("sign-out", stringifiedSignout);
     context.setSignOut(false);
     //Redirect
-    return <Navigate replace to={'/'}/>
-  }
+    return <Navigate replace to={"/"} />;
+  };
 
   const createAnAccount = () => {
     const formData = new FormData(form.current);
     const data = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      password: formData.get('password')
-    }
+      name: formData.get("name"),
+      email: formData.get("email"),
+      password: formData.get("password"),
+    };
     //Create account
     const stringifiedAccount = JSON.stringify(data);
-    localStorage.setItem('account', stringifiedAccount);
+    localStorage.setItem("account", stringifiedAccount);
     context.setAccount(data);
     //Sign In
     handleSignIn();
-  }
+  };
 
   const renderLogin = () => {
     return (
@@ -125,12 +125,16 @@ function Signin() {
             className="rounded-lg border border-black placeholder:font-light placeholder:text-sm placeholder:text-black/60 focus:outline-none py-2 px-4"
           />
         </div>
-        <Link to="/">
-          <button className="bg-black text-white w-full rounded-lg py-3"
-          onClick={() => createAnAccount()}>
-            Create
-          </button>
-        </Link>
+        <div className="mb-2">
+          <Link to="/">
+            <button
+              className="bg-black text-white w-full rounded-lg py-3"
+              onClick={() => createAnAccount()}
+            >
+              Create
+            </button>
+          </Link>
+        </div>
       </form>
     );
   };
