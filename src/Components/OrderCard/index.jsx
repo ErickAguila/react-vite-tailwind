@@ -2,6 +2,7 @@ import { XMarkIcon } from "@heroicons/react/24/solid";
 
 const OrderCard = (props) => {
   const { id, title, imageUrl, price, handleDelete } = props;
+  
   let renderXMarkIcon;
   if (handleDelete) {
     renderXMarkIcon = (
@@ -12,13 +13,23 @@ const OrderCard = (props) => {
     );
   }
 
+  const renderImage = (img) => {
+    if (img && img.length === 1) {
+      return img[0]?.replaceAll('"', "").replace("[", "").replace("]", "");
+    } else if (img && img.length > 1) {
+      return img[1]?.replaceAll('"', "").replace("[", "").replace("]", "");
+    } else {
+      return "";
+    }
+  };
+
   return (
     <div className="flex justify-between items-center mb-3">
       <div className="flex items-center gap-2">
         <figure className="w-20 h-20">
           <img
             className="w-full h-full rounded-lg object-cover"
-            src={imageUrl}
+            src={renderImage(imageUrl)}
             alt={title}
           />
         </figure>

@@ -6,6 +6,16 @@ import "./styles.css";
 const ProductDetail = () => {
   const context = useContext(ShoppingCartContext);
 
+  const renderImage = (img) => {
+    if (img && img.length === 1) {
+      return img[0]?.replaceAll('"', "").replace("[", "").replace("]", "");
+    } else if (img && img.length > 1) {
+      return img[1]?.replaceAll('"', "").replace("[", "").replace("]", "");
+    } else {
+      return "";
+    }
+  };
+
   return (
     <aside
       className={`${
@@ -24,7 +34,7 @@ const ProductDetail = () => {
       <figure className="px-6">
         <img
           className="w-full h-full rounded-lg"
-          src={context.productToShow.images}
+          src={renderImage(context.productToShow.images)}
           alt={context.productToShow.title}
         />
       </figure>

@@ -19,6 +19,16 @@ const Card = (data) => {
     context.closeProductDetail();
   };
 
+  const renderImage = (img) => {
+    if (img && img.length === 1) {
+      return img[0]?.replaceAll('"', "").replace("[", "").replace("]", "");
+    } else if (img && img.length > 1) {
+      return img[1]?.replaceAll('"', "").replace("[", "").replace("]", "");
+    } else {
+      return "";
+    }
+  };
+
   const renderIcon = (id) => {
     const isInCart =
       context.cartProducts.filter((product) => product.id === id).length > 0;
@@ -51,7 +61,7 @@ const Card = (data) => {
         </span>
         <img
           className="w-full h-full object-cover rounded-lg"
-          src={data.data.images[0]}
+          src={renderImage(data.data.images)}
           alt={data.data.title}
         />
         {renderIcon(data.data.id)}
